@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Store</title>
+    <link rel="icon" type="png" href="{% static 'core/img/logo encabezado.png' %}">
+    <link rel="stylesheet" href="{% static 'core/css/estilo.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+    <div id="header1">
+        <div id="logo">
+            <img src="{% static 'core/img//logo pequeño.png' %}" alt="logop" style="margin: 0 0 0 0; width: 35%;">
+           </div> 
+           <!-- <div id="logh" hidden><img src="{% static 'core/img//logo.png' %}" alt=""> </div> -->
+           <div id="logh"><img src="{% static 'core/img//logo.png' %}" alt="logo" style="width: 35%"></div>
+         
+        <div id="menu">
+
+          
+            
+       
+
+            
+            <div id="vercom">
+                <button type="submit" class="btn btn-btn-light" >
+                <a href="{% url 'productos' %}">Producto</a>
+            </button>
+            </div>
+
+            <div id="iniciar">
+              <button type="submit" class="btn btn-btn-light" >
+                {% if user.is_authenticated %}
+                <a href="{% url 'suscripciones' %}">Suscripción</a>
+                &nbsp;
+                <a href="{% url 'vercompras' %}">Mis Compras</a>
+                {{user.username}}&nbsp;
+                <a href="{% url 'logout' %}">Cerrar sesión</a>
+                &nbsp;
+                <div id="carrito">
+                  <!-- Button trigger modal -->
+                  <button type="submit" class="btn btn-btn-light" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal1">
+                      <a href="#"><img src="{% static 'core/img/carro.png' %}" width="30px" alt=""></a>
+                  </button>
+                  <div id="modal-body">
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                          aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Carrito De Compras</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                          aria-label="Close"></button>
+                                  </div>
+                                  <div id="carrito-modal-body">
+                                      <div class="modal-body">
+                                        <div class="contener">
+                                          <table class="carrito">
+                                              <thead>
+                                                  <tr>
+                                                  <th scope="col">ID PRODUCTO</th>
+                                                  <th scope="col">NOMBRE</th>
+                                                  <th scope="col">MARCA</th>
+                                                  <th scope="col">PRECIO</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr>
+                                                  <td data-label="ID PRODUCTO">#30</td>
+                                                  <td data-label="NOMBRE">Correa de perro</td>
+                                                  <td data-label="MARCA">Ownat</td>
+                                                  <td data-label="PRECIO">$15.000</td>
+                                                  <td><button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button></td> 
+                                                  </tr>
+                                                  <tr>
+                                                      <td data-label="ID PRODUCTO">#54</td>
+                                                  <td data-label="NOMBRE">Identificador</td>
+                                                  <td data-label="MARCA">Acana</td>
+                                                  <td data-label="PRECIO">$2.500</td>
+                                                  <td><button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button></td> 
+                                                  </tr>
+                                                  <tr>
+                                                      <td data-label="ID PRODUCTO">#45</td>
+                                                  <td data-label="NOMBRE">Bandana</td>
+                                                  <td data-label="MARCA">petDafe</td>
+                                                  <td data-label="PRECIO">$3.000</td>
+                                                  <td><button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button></td> 
+                                                  </tr>
+                                                  <td data-label="ID PRODUCTO">ㅤ</td>
+                                                  <td data-label="NOMBRE">ㅤ</td>
+                                                  <td data-label="SUBTOTAL"><hp>SUBTOTAL</Hp></td>
+                                                  <td data-label="VALOR"><hp>$20.500</Hp></td>  
+                                                    <td data-label="DELETE">ㅤ</td>
+                                                  </tr>
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                      </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary"
+                                          data-bs-dismiss="modal">Cerrar</button>
+                                          <a class="btn btn-dark" href="pagar.html" role="button">Ir a Pagar</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+                {% else %}
+                <a href="{% url 'login' %}">Inicias sesión</a>
+                {% endif %}
+            </button>
+          </div>
+      
+
+            
+            </div>
+    </div>
+
+            <div id="logo2">
+              <img src="{% static 'core/img/logo3.png' %}" alt="">
+            </div>
+       
+            <div id="nuestro"><h1>PAGAR</h1></div>
+
+      <div id="pagar1">
+          <div id="prodpag">
+            <h1>ㅤ</h1>
+            <h2>Correa de perroㅤ</h2>
+                  <p>Precio: $15.000</p style= color >
+            <h2>Identificadorㅤ</h2>
+            <p>Precio: $2.500</p style= color >
+                <h2>Bandanaㅤ</h2>
+            <p>Precio: $3.000</p style= color >
+                <div class="input-group mb-3">
+                    <input  type="text" class="form-control" placeholder="Cupón" aria-label="Cupón" aria-describedby="button-addon2">
+                    <button id="usecup" class="btn btn-dark" type="button" id="button-addon2">Usar cupón</button>
+                  </div>
+                  <p>Subtotal: $20.500</p style= color >
+                    <p>Envio: No calculado</p style= color >
+                        <a class="btn btn-dark" href="#" role="button">Ir a Pagar</a>
+                        <h1>ㅤ</h1>
+          </div>
+          <div id="imagep">
+            <h1>ㅤ</h1>
+            <img id="img" src="{% static 'core/img/articulo7.png' %}" alt="" width="30%" style="padding: 2% 2%; display: flex; justify-content: flex-end;">
+            <img id="img" src="{% static 'core/img/articulo4.png' %}" alt="" width="30%" style="padding: 2% 2%; display: flex; justify-content: flex-end;">
+            <img id="img" src="{% static 'core/img/articulo1.png' %}" alt="" width="30%" style="padding: 2% 2%; display: flex; justify-content: flex-end;">
+          </div>
+          
+      </div>
+    </div>
+
+    <footer>
+      <div id="piepag">
+        <div id="centro">
+          <div class="container">
+            <h5> Centro de Ayuda</h5>
+            <a href="{% url 'problemasPedido' %}"><span class="otherPage">Problemas con tu pedido</span></a>
+            <a href="mailto:pet.store@gmail.com"><span class="otherPage">pet.store@gmail.com</span></a>
+        </div>
+        </div>
+        <div id="Pet">
+          <div class="container">
+            <h5> Quienes Somos</h5>
+            <a href="{% url 'nosotros' %}"><span class="otherPage">Acerca de nosotros</span></a>
+        </div>
+        </div>
+        <div id="redess">
+          
+            <h5> Redes sociales</h5>
+            <a href="https://www.facebook.com/Pet-Store-111594554881435"><img src="{% static 'core/img/facebook.png' %}" alt="" a>
+            <a href="https://www.instagram.com/petstore640/"><img src="{% static 'core/img/Instagram.png' %}" alt="" a>
+            <a href="https://twitter.com/PETSTORE_1"><img src="{% static 'core/img/twitter.png' %}" alt="" a>
+        
+        </div>
+        
+
+        
+
+      </div>
+
+      <div id="copyr">
+       
+        <div id="cop"> 
+          <div class="container1">
+            <a>Copyright © 2022 Pet Storeㅤ|ㅤ</a> 
+            <a href="{% url 'terminosycondiciones' %}">Términos y Condicionesㅤ|ㅤ</a>
+            <a href="{% url 'terminosycondiciones' %}">Seguridad y Privacidad</a>
+        </div>
+        </div>
+        </div>
+        
+      
+    </footer>
+  </body>
+  
+  </html>
